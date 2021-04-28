@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import '../styles/rating.css'
 const Rating = ({ value, reviews, color }) => {
   const stars = [1, 2, 3, 4, 5]
-  console.log(value, reviews)
   return (
     <div className='rating'>
       {stars.map((star, index) => {

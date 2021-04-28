@@ -1,23 +1,25 @@
-const { json } = require('body-parser')
-const express = require('express')
-const products = require('./data/products')
+import express from 'express'
+import connectDB from './config/db.js'
+import dotenv from 'dotenv'
+import productRoutes from './routes/productRoutes.js'
+dotenv.config()
 const app = express()
+connectDB()
 
 app.use(express.json())
+app.use((req, res, next) => {
+  console.log(req.originalUrl)
+  next()
+})
+app.use('/api/products/', productRoutes)
 
 app.get('/', (req, res) => {
   res.send('API is running')
 })
 
-app.get('/api/products/', (req, res) => {
-  res.send(products)
-})
+const PORT = process.env.PORT || 5000
 
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find(prod => {
-    return prod._id === req.params.id ? true : false
-  })
-  res.send(product)
-})
-
-app.listen(5000, console.log('Server running ...'))
+app.listen(
+  5000,
+  console.log(`Server running ... in ${process.env.NODE_ENV} at ${PORT}`)
+)

@@ -7,7 +7,6 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       const { data } = await axios.get('/api/products/')
-      console.log(data)
       setProducts(data)
     }
     fetchProducts()
