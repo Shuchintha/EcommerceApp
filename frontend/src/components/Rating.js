@@ -25,7 +25,7 @@ const Rating = ({ value, reviews, color }) => {
         : stars.map((star, index) => {
             return (
               <span key={index}>
-                <i style={{ color }} className='fas fa-star'></i>
+                <i style={{ color }} className='far fa-star'></i>
               </span>
             )
           })}
